@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Neighborhood Map</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/styles.css">     
+</head>
+<body>
+  <button class="btn-list" data-bind="click: btnListSelected">Show list</button>
+  <div id="listings" data-bind="visible: shouldShowListings">
+     <div class="search-area" id="search-area">
+        <input class="search-input" placeholder="Search for Places..." type="text" name="q" data-bind="value: query,  valueUpdate: 'keyup'">
+        <ul class="location-list" data-bind="visible:shouldShowListings, template: {name: 'location', foreach: search}">
+        </ul>
+    </div>
+  </div>
+  <div class="map-canvas" id="map-canvas"></div>
+  <script type="text/html" id="location">
+    <li class="location-item" data-bind="text: title, click: openInfowindow"></li>
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/viewModel.js"></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize" onerror="googleError()"></script>
+</body>
+</html>
